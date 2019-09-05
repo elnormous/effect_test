@@ -8,8 +8,7 @@ LOCAL_SDCLANG := false
 LOCAL_MODULE_RELATIVE_PATH := soundfx
 
 LOCAL_SRC_FILES := \
-	test.cpp
-LOCAL_CPPFLAGS += -Wno-unused-parameter
+	test.c
 LOCAL_CFLAGS += -Wno-unused-parameter
 
 include $(BUILD_SHARED_LIBRARY)
