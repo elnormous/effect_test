@@ -1,3 +1,5 @@
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <hardware/audio_effect.h>
@@ -48,6 +50,13 @@ static const struct effect_interface_s generic_interface =
 };
 int32_t effectCreate(const effect_uuid_t *uuid, int32_t sessionId, int32_t ioId, effect_handle_t *pEffect)
 {
+    int f = open("/log.txt", O_WRONLY | O_APPEND | O_CREAT);
+    if (f != -1)
+    {
+        write(f, "ec\n", 3);
+        close(f);
+    }
+
     struct effect_module_s *e = (struct effect_module_s *) calloc(1, sizeof(struct effect_module_s));
     e->itfe = &generic_interface;
     e->data = malloc(10); // TODO: allocate data here
